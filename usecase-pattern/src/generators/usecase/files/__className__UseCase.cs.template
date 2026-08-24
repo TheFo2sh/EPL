@@ -1,0 +1,15 @@
+namespace <%= namespace %>;
+
+public sealed record <%= className %>Request;
+
+public sealed record <%= className %>Response;
+
+public sealed class <%= className %>UseCase
+{
+    public Task<<%= className %>Response> ExecuteAsync(
+        <%= className %>Request request,
+        CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+}

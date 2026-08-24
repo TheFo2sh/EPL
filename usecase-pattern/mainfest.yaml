@@ -1,0 +1,50 @@
+title: C# Use Case with FastEndpoints
+version: "1.0.0"
+summary: Generate a C# use case and expose it over HTTP with FastEndpoints.
+---
+diagram:
+    format: mermaid
+    content: |
+        sequenceDiagram
+                actor Client
+                participant Endpoint as FastEndpoint
+                participant UseCase as Use Case
+
+                Client->>Endpoint: HTTP request
+                Endpoint->>UseCase: ExecuteAsync(request, cancellationToken)
+                UseCase-->>Endpoint: Typed response
+                Endpoint-->>Client: 200 OK with response
+---
+description:
+    format: markdown
+    content: |
+        # C# Use Case Pattern
+
+        This pattern creates a request, response, use-case class, and FastEndpoints
+        endpoint for a named feature in an existing Nx project.
+
+        ## Generated files
+
+        - `<project-root>/<directory>/<UseCase>/<UseCase>UseCase.cs`
+        - `<project-root>/<directory>/<UseCase>/<UseCase>Endpoint.cs`
+
+        The use case exposes `ExecuteAsync` and receives the generated request plus
+        a cancellation token. The endpoint injects the use case, maps the configured
+        HTTP method and route, invokes `ExecuteAsync`, and returns the typed response.
+
+        ## Generator inputs
+
+        - `name` (required): Use-case name, such as `CreateOrder`.
+        - `project` (required): Nx project that owns the C# source.
+        - `namespace`: C# namespace. Defaults to `<Project>.<Directory>.<UseCase>`.
+        - `directory`: Output directory under the project root. Defaults to `Features`.
+        - `route`: Endpoint route. Defaults to `/api/<kebab-case-name>`.
+        - `method`: `Delete`, `Get`, `Patch`, `Post`, or `Put`. Defaults to `Post`.
+
+        ## Integration requirements
+
+        The target application must reference FastEndpoints, register FastEndpoints,
+        register the generated use-case class with dependency injection, and map
+        FastEndpoints in its ASP.NET Core request pipeline. Generated endpoints use
+        FastEndpoints' normal authorization behavior unless explicitly configured
+        otherwise.

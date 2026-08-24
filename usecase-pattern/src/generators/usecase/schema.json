@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "UsecaseGenerator",
+  "title": "C# use case generator",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Use case name, for example CreateOrder",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What should the use case be called?"
+    },
+    "project": {
+      "type": "string",
+      "description": "Nx project that owns the C# source",
+      "x-dropdown": "projects",
+      "x-prompt": "Which project should contain the use case?"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "C# namespace; defaults to <Project>.<Directory>.<UseCase>"
+    },
+    "directory": {
+      "type": "string",
+      "description": "Directory under the project root",
+      "default": "Features"
+    },
+    "route": {
+      "type": "string",
+      "description": "HTTP route; defaults to /api/<kebab-case-name>"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method exposed by the endpoint",
+      "enum": ["Delete", "Get", "Patch", "Post", "Put"],
+      "default": "Post"
+    }
+  },
+  "required": ["name", "project"]
+}

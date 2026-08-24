@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "generators": {
+    "usecase": {
+      "factory": "./dist/generators/usecase/generator",
+      "schema": "./src/generators/usecase/schema.json",
+      "description": "Generate a C# use case and a FastEndpoints endpoint"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+using FastEndpoints;
+
+namespace <%= namespace %>;
+
+public sealed class <%= className %>Endpoint(<%= className %>UseCase useCase)
+    : Endpoint<<%= className %>Request, <%= className %>Response>
+{
+    public override void Configure()
+    {
+        <%= method %>("<%= route %>");
+    }
+
+    public override async Task HandleAsync(
+        <%= className %>Request request,
+        CancellationToken cancellationToken)
+    {
+        var response = await useCase.ExecuteAsync(request, cancellationToken);
+        await Send.OkAsync(response, cancellationToken);
+    }
+}
