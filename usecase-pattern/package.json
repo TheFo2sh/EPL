@@ -9,7 +9,6 @@
   "files": [
     "dist",
     "generators.json",
-    "README.md",
     "src/generators/*/schema.json"
   ],
   "scripts": {
