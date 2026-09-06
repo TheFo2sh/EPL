@@ -1,11 +1,13 @@
-# C# Use Case Pattern
+# C# Patterns Repository
 
-An [Nx](https://nx.dev/) generator that creates a C# use case and exposes it over
-HTTP with [FastEndpoints](https://fast-endpoints.com/).
+This repository is a collection of C# application patterns for Nx workspaces.
+Each pattern lives in its own package with documentation, templates, and tests.
 
-For each named feature, the generator creates typed request and response records,
-a use-case class, and a matching endpoint. Output follows a feature-folder layout
-inside an existing Nx project.
+## Included patterns
+
+- `usecase-pattern`: an [Nx](https://nx.dev/) generator that creates a C# use
+  case and exposes it over HTTP with
+  [FastEndpoints](https://fast-endpoints.com/).
 
 ## Requirements
 
