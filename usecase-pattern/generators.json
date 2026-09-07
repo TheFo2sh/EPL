@@ -4,7 +4,7 @@
     "usecase": {
       "factory": "./dist/generators/usecase/generator",
       "schema": "./src/generators/usecase/schema.json",
-      "description": "Generate a C# use case and a FastEndpoints endpoint"
+      "description": "Generate a C# use case, validator, and FastEndpoints endpoint"
     }
   }
 }
