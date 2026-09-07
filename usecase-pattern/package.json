@@ -2,7 +2,7 @@
   "name": "@local/usecase-pattern",
   "version": "0.1.0",
   "private": true,
-  "description": "Nx generator for C# use cases exposed with FastEndpoints",
+  "description": "Nx generator for C# use cases with FastEndpoints endpoints and validators",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "generators": "./generators.json",

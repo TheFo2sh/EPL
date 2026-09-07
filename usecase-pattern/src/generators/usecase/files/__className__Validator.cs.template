@@ -1,0 +1,7 @@
+using FastEndpoints;
+
+namespace <%= namespace %>;
+
+public sealed class <%= className %>Validator : Validator<<%= className %>Request>
+{
+}

@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import usecaseGenerator from './generator';
 
 describe('usecase generator', () => {
-  it('generates a use case and FastEndpoints endpoint', async () => {
+  it('generates a use case, validator, and FastEndpoints endpoint', async () => {
     const tree = createTreeWithEmptyWorkspace();
     addProjectConfiguration(tree, 'orders-api', {
       root: 'apps/orders-api',
@@ -19,13 +19,18 @@ describe('usecase generator', () => {
 
     const usecasePath = 'apps/orders-api/Features/CreateOrder/CreateOrderUseCase.cs';
     const endpointPath = 'apps/orders-api/Features/CreateOrder/CreateOrderEndpoint.cs';
+    const validatorPath = 'apps/orders-api/Features/CreateOrder/CreateOrderValidator.cs';
 
     expect(tree.exists(usecasePath)).toBe(true);
     expect(tree.exists(endpointPath)).toBe(true);
+    expect(tree.exists(validatorPath)).toBe(true);
     expect(tree.read(usecasePath, 'utf-8')).toContain(
       'namespace OrdersApi.Features.CreateOrder;',
     );
     expect(tree.read(endpointPath, 'utf-8')).toContain('Post("/api/create-order");');
+    expect(tree.read(validatorPath, 'utf-8')).toContain(
+      'public sealed class CreateOrderValidator : Validator<CreateOrderRequest>',
+    );
   });
 
   it('honors endpoint and location options', async () => {
@@ -49,7 +54,12 @@ describe('usecase generator', () => {
       'services/billing/Application/Invoices/GetInvoice/GetInvoiceEndpoint.cs',
       'utf-8',
     );
+    const validator = tree.read(
+      'services/billing/Application/Invoices/GetInvoice/GetInvoiceValidator.cs',
+      'utf-8',
+    );
     expect(endpoint).toContain('namespace Acme.Billing.Invoices;');
     expect(endpoint).toContain('Get("/invoices/{id}");');
+    expect(validator).toContain('namespace Acme.Billing.Invoices;');
   });
 });
