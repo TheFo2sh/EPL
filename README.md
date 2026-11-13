@@ -1,6 +1,6 @@
-# C# Patterns Repository
+# EPL Patterns Repository
 
-This repository is a collection of C# application patterns for Nx workspaces.
+This repository is a collection of application patterns for Nx workspaces.
 Each pattern lives in its own package with documentation, templates, and tests.
 
 ## Included patterns
@@ -8,13 +8,14 @@ Each pattern lives in its own package with documentation, templates, and tests.
 - `usecase-pattern`: an [Nx](https://nx.dev/) generator that creates a C# use
   case and exposes it over HTTP with
   [FastEndpoints](https://fast-endpoints.com/).
+- `nodejs-pattern`: an Nx generator that bootstraps a TypeScript Node.js
+  application with a Hello World page.
 
 ## Requirements
 
 - Node.js and npm
 - An Nx 23 workspace
-- A C# ASP.NET Core project represented in the Nx project graph
-- The `FastEndpoints` NuGet package in the target C# project
+- An Nx 23 workspace
 
 ## Repository setup
 
@@ -107,6 +108,28 @@ FastEndpoints applies its normal authorization behavior to generated endpoints.
 Only add `AllowAnonymous()` in an endpoint's `Configure()` method when the route
 is intentionally public.
 
+## Generate a TypeScript Node.js application
+
+Install the Node.js pattern package in an Nx workspace, then generate an app:
+
+```sh
+npm install --save-dev /absolute/path/to/repository/nodejs-pattern
+npx nx generate @local/nodejs-pattern:application hello-world
+```
+
+The generated project is placed in `apps/hello-world`. Install its dependencies
+and run the app with:
+
+```sh
+cd apps/hello-world
+npm install
+cd ../..
+npx nx serve hello-world
+```
+
+Open `http://localhost:3000` to see the Hello World page. Set `PORT` to change
+the default port.
+
 ## Pattern flow
 
 ```mermaid
@@ -129,6 +152,7 @@ usecase-pattern/generators.json                   Nx generator registration
 usecase-pattern/mainfest.yaml                     Pattern metadata and documentation
 usecase-pattern/scripts/copy-assets.mjs           Template packaging script
 usecase-pattern/src/generators/usecase/           Generator source and tests
+nodejs-pattern/                                   TypeScript Node.js application generator
 ```
 
 ## Development

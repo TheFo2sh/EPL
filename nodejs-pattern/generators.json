@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "generators": {
+    "application": {
+      "factory": "./dist/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "Generate a TypeScript Node.js web application with a Hello World page"
+    }
+  }
+}

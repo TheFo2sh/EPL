@@ -1,0 +1,27 @@
+title: TypeScript Node.js Application
+version: "1.0.0"
+summary: Generate a TypeScript Node.js web application with a Hello World page.
+---
+description:
+    format: markdown
+    content: |
+        # TypeScript Node.js Application Pattern
+
+        This pattern generates an Nx application using Node.js and TypeScript. The
+        application serves a Hello World page at `/`.
+
+        ## Generated files
+
+        - `apps/<name>/package.json`
+        - `apps/<name>/tsconfig.json`
+        - `apps/<name>/src/server.ts`
+        - `apps/<name>/src/pages/index.ts`
+
+        ## Generator inputs
+
+        - `name` (required): Application name, such as `hello-world`.
+
+        ## Run the application
+
+        Install the generated application's dependencies, then run its Nx serve
+        target. It listens on port 3000 by default; set `PORT` to use another port.
