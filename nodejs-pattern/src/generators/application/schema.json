@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ApplicationGenerator",
+  "title": "TypeScript Node.js application generator",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Application name, for example hello-world",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What should the application be called?"
+    }
+  },
+  "required": ["name"]
+}
